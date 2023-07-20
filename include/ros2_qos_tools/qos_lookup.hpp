@@ -1,5 +1,5 @@
-#ifndef ROS2_QOS_TOOLS_QOS_LOOKUP_HPP
-#define ROS2_QOS_TOOLS_QOS_LOOKUP_HPP
+#ifndef ROS2_QOS_TOOLS__QOS_LOOKUP_HPP
+#define ROS2_QOS_TOOLS__QOS_LOOKUP_HPP
 
 #include <chrono>
 
@@ -8,7 +8,7 @@
 
 namespace ros2_qos_tools
 {
-    rclcpp::QoS lookup_qos(
+    static rclcpp::QoS lookup_qos(
         const rclcpp::Node &node,
         const std::string &topic,
         const rclcpp::EndpointType endpoint_type,
@@ -44,7 +44,7 @@ namespace ros2_qos_tools
             }
 
             std::chrono::duration<float> dt = std::chrono::high_resolution_clock::now() - start_time;
-            if (!(0.0 < timeout < dt.count()))
+            if (timeout > 0.0 && dt.count() > timeout)
             {
                 RCLCPP_WARN(node.get_logger(), "QoS lookup: timeout for topic %s", topic.c_str());
                 return rclcpp::SystemDefaultsQoS();
