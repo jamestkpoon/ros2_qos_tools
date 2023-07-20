@@ -17,7 +17,14 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY include/ros2_qos_tools DESTINATION include)
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    "${PROJECT_SOURCE_DIR}/Config.cmake.in"
+    "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION lib/cmake/${PROJECT_NAME}
+)
+install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION lib/cmake/${PROJECT_NAME})
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME} DESTINATION include)
 
 
 if(BUILD_TESTING)

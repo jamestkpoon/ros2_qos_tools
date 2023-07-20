@@ -1,0 +1,1 @@
+set(ros2_qos_tools_INCLUDE_DIR @CMAKE_INSTALL_PREFIX@/include)
