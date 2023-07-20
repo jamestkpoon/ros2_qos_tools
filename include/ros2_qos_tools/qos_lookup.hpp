@@ -1,5 +1,5 @@
-#ifndef ROS2_QOS_TOOLS_QOS_LOOKUP
-#define ROS2_QOS_TOOLS_QOS_LOOKUP
+#ifndef ROS2_QOS_TOOLS_QOS_LOOKUP_HPP
+#define ROS2_QOS_TOOLS_QOS_LOOKUP_HPP
 
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/qos.hpp>

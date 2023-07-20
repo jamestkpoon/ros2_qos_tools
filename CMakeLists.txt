@@ -17,6 +17,8 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(DIRECTORY include/ros2_qos_tools DESTINATION include)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
