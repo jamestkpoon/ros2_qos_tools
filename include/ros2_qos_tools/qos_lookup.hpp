@@ -8,7 +8,7 @@
 
 namespace ros2_qos_tools
 {
-    inline rclcpp::QoS lookup_qos(
+    rclcpp::QoS lookup_qos(
         const rclcpp::Node &node,
         const std::string &topic,
         const rclcpp::EndpointType endpoint_type,
