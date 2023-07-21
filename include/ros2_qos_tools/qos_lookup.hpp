@@ -15,7 +15,7 @@ namespace ros2_qos_tools
         const float timeout = -1.0)
     {
         auto start_time = std::chrono::high_resolution_clock::now();
-        while (true)
+        while (rclcpp::ok())
         {
             std::vector<rclcpp::TopicEndpointInfo> endpoint_infos;
             switch (endpoint_type)
