@@ -14,7 +14,7 @@ namespace ros2_qos_tools
         const rclcpp::EndpointType endpoint_type,
         const float timeout = -1.0)
     {
-        auto start_time = std::chrono::high_resolution_clock::now();
+        auto start_time = std::chrono::system_clock::now();
         while (rclcpp::ok())
         {
             std::vector<rclcpp::TopicEndpointInfo> endpoint_infos;
@@ -43,7 +43,7 @@ namespace ros2_qos_tools
                 return qos;
             }
 
-            std::chrono::duration<float> dt = std::chrono::high_resolution_clock::now() - start_time;
+            std::chrono::duration<float> dt = std::chrono::system_clock::now() - start_time;
             if (timeout > 0.0 && dt.count() > timeout)
             {
                 RCLCPP_ERROR(node.get_logger(), "QoS lookup [%s]: timeout", topic.c_str());
