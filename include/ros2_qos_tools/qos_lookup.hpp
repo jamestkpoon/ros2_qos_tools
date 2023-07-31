@@ -27,7 +27,7 @@ namespace ros2_qos_tools
                 endpoint_infos = node.get_subscriptions_info_by_topic(topic);
                 break;
             default:
-                RCLCPP_WARN(node.get_logger(), "QoS lookup: invalid endpoint type requested for topic %s", topic.c_str());
+                RCLCPP_ERROR(node.get_logger(), "QoS lookup [%s]: invalid endpoint type requested", topic.c_str());
                 return rclcpp::SystemDefaultsQoS();
             }
 
@@ -46,9 +46,12 @@ namespace ros2_qos_tools
             std::chrono::duration<float> dt = std::chrono::high_resolution_clock::now() - start_time;
             if (timeout > 0.0 && dt.count() > timeout)
             {
-                RCLCPP_WARN(node.get_logger(), "QoS lookup: timeout for topic %s", topic.c_str());
+                RCLCPP_ERROR(node.get_logger(), "QoS lookup [%s]: timeout", topic.c_str());
                 return rclcpp::SystemDefaultsQoS();
             }
+
+            RCLCPP_WARN(node.get_logger(), "QoS lookup [%s]: no endpoints available", topic.c_str());
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
     }
 }
