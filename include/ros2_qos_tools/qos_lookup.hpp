@@ -53,6 +53,8 @@ namespace ros2_qos_tools
             RCLCPP_WARN(node.get_logger(), "QoS lookup [%s]: no endpoints available", topic.c_str());
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
+
+        return rclcpp::SystemDefaultsQoS();
     }
 }
 
