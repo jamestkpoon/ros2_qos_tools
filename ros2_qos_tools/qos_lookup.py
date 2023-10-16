@@ -13,7 +13,7 @@ SUB = TopicEndpointTypeEnum.SUBSCRIPTION
 
 def fix_qos_profile(qos_profile: qos.QoSProfile):
     if qos_profile.history == qos_profile.history.UNKNOWN:
-        qos_profile.history = qos_profile.history.KEEP_LAST
+        qos_profile.history = qos_profile.history.SYSTEM_DEFAULT
 
     return qos_profile
 
